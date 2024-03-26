@@ -1,11 +1,14 @@
 import Koa from 'koa';
 import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
-import cors from '@koa/cors'; // Importez @koa/cors au lieu de cors
+import cors from '@koa/cors';
 import User from './models/User.js';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const uri = "mongodb+srv://adrrienchandrakumar:ZHYu4KyCECaWvmh3@fullstackapplication.rgu3yqe.mongodb.net/?retryWrites=true&w=majority&appName=fullstackapplication";
+dotenv.config();
+
+const uri = process.env.DB_URI;
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
 const app = new Koa();
