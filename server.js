@@ -5,6 +5,7 @@ import cors from '@koa/cors';
 import User from './models/User.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -15,12 +16,13 @@ const app = new Koa();
 const router = new Router();
 
 mongoose.connect(uri, clientOptions, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('Connected to MongoDB Atlas'))
-    .catch(err => console.error('Could not connect to MongoDB Atlas', err));
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Could not connect to MongoDB', err));
 
 router.post('/register', async (ctx) => {
     const { username, password } = ctx.request.body;
-    const user = new User({ username, password });
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+    const user = new User({ username, password: hashedPassword }); // Store the hashed password
     try {
         await user.save();
         ctx.body = { message: 'User registered successfully' };
@@ -30,7 +32,28 @@ router.post('/register', async (ctx) => {
     }
 });
 
-app.use(cors()); // Utilisez @koa/cors ici
+router.post('/login', async (ctx) => {
+    console.log('Login request:', ctx.request.body);
+    const { username, password } = ctx.request.body;
+    const user = await User.findOne({ username });
+    if (!user) {
+        console.log('User not found:', username);
+        ctx.status = 400;
+        ctx.body = { message: 'User not found' };
+        return;
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        console.log('Invalid password for user:', username);
+        ctx.status = 400;
+        ctx.body = { message: 'Invalid password' };
+        return;
+    }
+    console.log('User logged in successfully:', username);
+    ctx.body = { message: 'Logged in successfully' };
+});
+
+app.use(cors());
 app.use(bodyParser());
 app.use(router.routes()).use(router.allowedMethods());
 app.listen(3000, () => console.log('Server running on port 3000'));
