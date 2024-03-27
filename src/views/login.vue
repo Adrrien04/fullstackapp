@@ -19,7 +19,9 @@
 <script setup>
 import {ref} from 'vue'
 import axios from 'axios'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const username = ref('')
 const password = ref('')
 const message = ref('')
@@ -32,6 +34,7 @@ const login = async () => {
     })
     if (response.data.message) {
       message.value = response.data.message
+      store.commit('setLoggedIn', true)
     }
   } catch (err) {
     message.value = 'Invalid credentials'
