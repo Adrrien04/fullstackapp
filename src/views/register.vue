@@ -1,16 +1,16 @@
 <template>
-  <div class="register">
-    <h1>Register</h1>
-    <form @submit.prevent="register">
-      <div>
+  <div class="register container">
+    <h1 class="text-center">Register</h1>
+    <form @submit.prevent="register" class="mx-auto" style="max-width: 300px;">
+      <div class="form-group">
         <label for="username">Username:</label>
-        <input id="username" v-model="username" type="text" required>
+        <input id="username" v-model="username" type="text" required class="form-control">
       </div>
-      <div>
+      <div class="form-group">
         <label for="password">Password:</label>
-        <input id="password" v-model="password" type="password" required>
+        <input id="password" v-model="password" type="password" required class="form-control">
       </div>
-      <button type="submit">Register</button>
+      <button type="submit" class="btn btn-primary">Register</button>
     </form>
   </div>
 </template>
