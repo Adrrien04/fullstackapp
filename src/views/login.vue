@@ -12,6 +12,7 @@
       </div>
       <button type="submit">Login</button>
     </form>
+    <p>{{ message }}</p>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import axios from 'axios'
 
 const username = ref('')
 const password = ref('')
+const message = ref('')
 
 const login = async () => {
   try {
@@ -28,10 +30,11 @@ const login = async () => {
       username: username.value,
       password: password.value
     })
-    console.log('Response:', response) // Ajout du console.log ici
-    console.log(response.data.message)
+    if (response.data.message) {
+      message.value = response.data.message
+    }
   } catch (err) {
-    console.error(err)
+    message.value = 'Invalid credentials'
   }
 }
 </script>

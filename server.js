@@ -49,7 +49,7 @@ router.post('/login', async (ctx) => {
         ctx.body = { message: 'Invalid password' };
         return;
     }
-    console.log('User logged in successfully:', username);
+    console.log('Logged in successfully:', username);
     ctx.body = { message: 'Logged in successfully' };
 });
 
