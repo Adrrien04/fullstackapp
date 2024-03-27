@@ -1,6 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useStore } from 'vuex'
+const store = useStore()
+const logout = () => {
+  store.commit('setLoggedIn', false)
+  window.location.reload()
+}
+
 </script>
 
 <template>
@@ -11,11 +18,13 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/register">Register</RouterLink>
-
+        <RouterLink class="btn btn-primary" to="/">Home</RouterLink>
+        <RouterLink class="btn btn-primary" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
+        <button class="btn btn-primary" v-else @click="logout">Logoff</button>
+        <RouterLink class="btn btn-primary" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
       </nav>
+
+
     </div>
   </header>
 
@@ -79,9 +88,9 @@ nav a:first-of-type {
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
 }
 </style>
+
