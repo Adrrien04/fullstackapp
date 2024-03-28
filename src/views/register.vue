@@ -12,6 +12,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Register</button>
     </form>
+    <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
   </div>
 </template>
 
@@ -21,6 +22,8 @@ import axios from 'axios'
 
 const username = ref('')
 const password = ref('')
+const message = ref('')
+const isSuccess = ref(false)
 
 const register = async () => {
   try {
@@ -28,7 +31,13 @@ const register = async () => {
       username: username.value,
       password: password.value
     })
-    console.log(response.data.message)
+    if (response.data.message === 'User registered successfully') {
+      message.value = response.data.message
+      isSuccess.value = true
+    } else {
+      message.value = response.data.message
+      isSuccess.value = false
+    }
   } catch (err) {
     console.error(err)
   }

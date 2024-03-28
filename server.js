@@ -21,8 +21,8 @@ mongoose.connect(uri, clientOptions, { useNewUrlParser: true, useUnifiedTopology
 
 router.post('/register', async (ctx) => {
     const { username, password } = ctx.request.body;
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
-    const user = new User({ username, password: hashedPassword }); // Store the hashed password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = new User({ username, password: hashedPassword });
     try {
         await user.save();
         ctx.body = { message: 'User registered successfully' };

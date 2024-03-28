@@ -12,7 +12,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
-    <p>{{ message }}</p>
+    <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
   </div>
 </template>
 
@@ -25,6 +25,7 @@ const store = useStore()
 const username = ref('')
 const password = ref('')
 const message = ref('')
+const isSuccess = ref(false)
 
 const login = async () => {
   try {
@@ -34,10 +35,12 @@ const login = async () => {
     })
     if (response.data.message) {
       message.value = response.data.message
+      isSuccess.value = response.data.message === 'Logged in successfully'
       store.commit('setLoggedIn', true)
     }
   } catch (err) {
     message.value = 'Invalid credentials'
+    isSuccess.value = false
   }
 }
 </script>
