@@ -18,8 +18,11 @@
     "dotenv": "^16.4.5",
     "koa": "^2.15.2",
     "koa-bodyparser": "^4.4.1",
+    "mdb-vue-ui-kit": "^4.1.1",
     "mongoose": "^8.2.3",
+    "swiper": "^8.4.7",
     "vue": "^3.4.21",
+    "vue-awesome-swiper": "^5.0.1",
     "vue-router": "^4.3.0",
     "vuex": "^4.0.2"
   },
