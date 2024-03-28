@@ -25,9 +25,9 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const store = useStore() // Use the store inside beforeEach
+  const store = useStore()
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.state.isLoggedIn) { // Use store.state.isLoggedIn instead of the local variable
+    if (!store.state.isLoggedIn) {
       next({ name: 'login' })
     } else {
       next()

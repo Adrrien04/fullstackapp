@@ -53,4 +53,14 @@ const login = async () => {
   border: 1px solid var(--color-border);
   border-radius: 4px;
 }
+
+.login.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+}
+
 </style>
