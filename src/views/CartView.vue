@@ -5,7 +5,7 @@
       <div class="alert alert-danger" role="alert">
         Please log in to add your rent in the cart
         <br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<RouterLink class="btn btn-primary" to="/login">Login</RouterLink>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<RouterLink class="btn btn-primary" to="/login">Login</RouterLink>
       </div>
     </div>
     <div v-else>

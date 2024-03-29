@@ -1,6 +1,6 @@
 <template>
   <div class="register container">
-    <h1 class="text-center">Register</h1>
+    <h1 class="text-center">R E G I S T E R</h1>
     <form @submit.prevent="register" class="mx-auto" style="max-width: 300px;">
       <div class="form-group">
         <label for="name">Name:</label>

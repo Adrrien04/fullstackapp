@@ -1,6 +1,6 @@
 <template>
   <div class="login container">
-    <h1 class="text-center">Login</h1>
+    <h1 class="text-center">L O G I N</h1>
     <form @submit.prevent="login" class="mx-auto" style="max-width: 300px;">
       <div class="form-group">
         <label for="username">Username:</label>
@@ -66,9 +66,9 @@ const login = async () => {
   padding: 1rem;
 }
 form {
-  border: 1px solid #000; 
+  border: 1px solid #000;
   padding: 20px;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 </style>
