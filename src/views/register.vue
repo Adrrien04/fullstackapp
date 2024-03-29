@@ -27,7 +27,7 @@ const isSuccess = ref(false)
 
 const register = async () => {
   try {
-    const response = await axios.post('http://localhost:3000/register', {
+    const response = await axios.post(' https://0f1a-2a01-e0a-17a-64e0-51da-a506-a616-b008.ngrok-free.app/register', {
       username: username.value,
       password: password.value
     })

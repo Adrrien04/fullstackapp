@@ -1,6 +1,6 @@
 <script setup>
-import { RouterLink } from 'vue-router'
-import { useStore } from 'vuex'
+import {RouterLink} from 'vue-router'
+import {useStore} from 'vuex'
 
 const store = useStore()
 
@@ -9,16 +9,63 @@ const logout = () => {
   window.location.reload()
 }
 </script>
-
 <template>
-  <nav>
-    <RouterLink class="btn btn-primary" to="/">Home</RouterLink>
-    <RouterLink class="btn btn-primary" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
-    <button class="btn btn-primary" v-else @click="logout">Logoff</button>
-    <RouterLink class="btn btn-primary" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
-  </nav>
+  <div id="app">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/">Home</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/about">About</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/register"
+              >Register
+              </router-link
+              >
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
+            <li class="nav-item" v-if="isAuthenticated">
+              <router-link class="nav-link" to="/shopping"
+              >Shopping
+              </router-link
+              >
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <router-view/>
+  </div>
 </template>
-
 
 
 <style scoped>
@@ -32,12 +79,12 @@ nav {
 }
 
 nav .btn {
-  color: #fff; /* Couleur du texte des boutons */
-  margin: 0 10px; /* Espacement entre les boutons */
+  color: #fff;
+  margin: 0 10px;
 }
 
 nav .btn:hover {
-  color: #ddd; /* Couleur du texte des boutons au survol */
-  text-decoration: none; /* Supprime le soulignement au survol */
+  color: #ddd;
+  text-decoration: none;
 }
 </style>
