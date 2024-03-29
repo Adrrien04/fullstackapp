@@ -8,9 +8,9 @@
           type="text"
           v-model="searchTerm"
           class="form-control"
-          placeholder="Rechercher des logements"
+          placeholder="Search for rooms"
       />
-      <button class="btn btn-primary">Rechercher</button>
+      <button class="btn btn-primary">Search</button>
     </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -24,8 +24,8 @@
             <p class="card-text">{{ listing.description }}</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Dernière mise à jour il y a 3 minutes</small>
-            <button @click="addToCart(listing)" class="btn btn-primary">Ajouter au panier</button>
+            <small class="text-muted">Last updated : 3 minutes ago</small>
+            <button @click="addToCart(listing)" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
       </div>
