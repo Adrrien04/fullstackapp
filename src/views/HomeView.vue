@@ -1,31 +1,31 @@
 <template>
-  <div class="container">
+  <div class="container text-center">
     <header class="header">
 
     </header>
-    <div class="search-bar">
+    <div class="input-group mb-3">
       <input
           type="text"
           v-model="searchTerm"
-          class="search-input"
+          class="form-control"
           placeholder="Rechercher des logements"
       />
-      <button class="search-button">Rechercher</button>
+      <button class="btn btn-primary">Rechercher</button>
     </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="listing in filteredListings" :key="listing._id">
         <div class="card h-100">
           <router-link :to="`/listing/${listing._id}`">
-            <img :src="listing.image" class="card-img-top" :alt="listing.title"/>
+            <img :src="listing.image" class="card-img-top img-fluid listing-image" :alt="listing.title"/>
           </router-link>
           <div class="card-body">
             <h5 class="card-title">{{ listing.title }}</h5>
             <p class="card-text">{{ listing.description }}</p>
           </div>
           <div class="card-footer">
-            <small class="text-body-secondary">Dernière mise à jour il y a 3 minutes</small>
-            <button @click="addToCart(listing)">Ajouter au panier</button>
+            <small class="text-muted">Dernière mise à jour il y a 3 minutes</small>
+            <button @click="addToCart(listing)" class="btn btn-primary">Ajouter au panier</button>
           </div>
         </div>
       </div>
@@ -90,37 +90,20 @@ body {
   padding: 20px;
 }
 
-/* Styles pour les éléments spécifiques */
+
 .header {
   background-color: #ffffff;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.search-box {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-}
 
-.featured-listings {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
+ .listing-image {
+   width: 100%;
+   height: 200px;
+   object-fit: cover;
+ }
 
-.listing-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: calc(33.33% - 20px);
-}
-
-/* Ajoutez plus de styles pour les autres éléments (annonces, filtres, etc.) */
-</style>
-<style scoped>
 .search-bar {
   display: flex;
   align-items: center;

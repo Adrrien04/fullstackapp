@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="text-center">
     <h1>{{ listing.title }}</h1>
-    <img :src="listing.image" :alt="listing.title"/>
+    <img :src="listing.image" :alt="listing.title" class="img-fluid"/>
     <p>{{ listing.description }}</p>
-    <p>Prix : {{ listing.price }}€</p>
-    <p>Localisation : {{ listing.location }}</p>
-    <p>Nombre de pièces : {{ listing.rooms }}</p>
+    <p>Price : {{ listing.price }}&euro; per day</p>
+    <p>Location : {{ listing.location }}</p>
+    <p>Rooms : {{ listing.rooms }}</p>
   </div>
 </template>
 
@@ -29,3 +29,32 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #666;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+</style>
