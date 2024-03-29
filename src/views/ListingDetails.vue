@@ -1,7 +1,7 @@
 <template>
   <div class="text-center">
     <h1>{{ listing.title }}</h1>
-    <img :src="listing.image" :alt="listing.title" class="img-fluid"/>
+    <img :src="listing.image" :alt="listing.title" class="img-fluid listing-image"/>
     <p>{{ listing.description }}</p>
     <p>Price : {{ listing.price }}&euro; per day</p>
     <p>Location : {{ listing.location }}</p>
@@ -57,4 +57,10 @@ p {
   font-size: 1.2em;
   margin-bottom: 10px;
 }
+
+ .listing-image {
+   width: 40%;
+   height: 500px;
+   object-fit: cover;
+ }
 </style>

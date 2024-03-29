@@ -31,7 +31,7 @@ const logout = () => {
                   <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
                 </li>
                 <li class="nav-item">
-                  <RouterLink class="nav-link" to="/cart">Panier</RouterLink>
+                  <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
                 </li>
               </ul>
               <form class="d-flex search-bar" role="search">
