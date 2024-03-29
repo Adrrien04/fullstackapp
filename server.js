@@ -55,6 +55,7 @@ router.post('/login', async (ctx) => {
     console.log('Logged in successfully:', username);
     ctx.body = { message: 'Logged in successfully' };
 });
+
 router.get('/houses', async (ctx) => {
     try {
         console.log('Fetching houses...');
@@ -67,6 +68,23 @@ router.get('/houses', async (ctx) => {
         ctx.body = { message: err.message };
     }
 });
+
+router.get('/houses/:id', async (ctx) => {
+    try {
+        const house = await House.findById(ctx.params.id);
+        if (!house) {
+            ctx.status = 404;
+            ctx.body = { message: 'House not found' };
+            return;
+        }
+        ctx.body = house;
+    } catch (err) {
+        ctx.status = 500;
+        ctx.body = { message: err.message };
+    }
+});
+
+
 app.use(cors());
 app.use(bodyParser());
 app.use(router.routes()).use(router.allowedMethods());

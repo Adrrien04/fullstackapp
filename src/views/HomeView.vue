@@ -1,9 +1,8 @@
 <template>
   <div class="container">
     <header class="header">
-      <!-- Logo, navigation, etc. -->
-    </header>
 
+    </header>
     <div class="search-bar">
       <input
           type="text"
@@ -15,15 +14,18 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
-      <div class="col" v-for="listing in filteredListings" :key="listing.id">
+      <div class="col" v-for="listing in filteredListings" :key="listing._id">
         <div class="card h-100">
-          <img :src="listing.image" class="card-img-top" :alt="listing.title"/>
+          <router-link :to="`/listing/${listing._id}`">
+            <img :src="listing.image" class="card-img-top" :alt="listing.title"/>
+          </router-link>
           <div class="card-body">
             <h5 class="card-title">{{ listing.title }}</h5>
             <p class="card-text">{{ listing.description }}</p>
           </div>
           <div class="card-footer">
             <small class="text-body-secondary">Dernière mise à jour il y a 3 minutes</small>
+            <button @click="addToCart(listing)">Ajouter au panier</button>
           </div>
         </div>
       </div>
@@ -31,8 +33,10 @@
   </div>
 </template>
 
+
 <script>
 import axios from 'axios';
+
 
 export default {
   name: "HomeView",
@@ -50,10 +54,15 @@ export default {
     },
   },
   methods: {
+    addToCart(listing) {
+      this.$store.dispatch('addToCart', listing);
+    },
     async fetchListings() {
       try {
-        const response = await axios.get('https://3334-209-206-8-34.ngrok-free.app/houses');
-        this.listings = Array.isArray(response.data) ? response.data : [];
+        const response = await axios.get('http://localhost:3000/houses');
+        this.listings = Array.isArray(response.data)
+            ? response.data.filter(listing => listing._id)
+            : [];
       } catch (error) {
         console.error(error);
         this.listings = [];

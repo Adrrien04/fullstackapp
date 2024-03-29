@@ -10,32 +10,42 @@ const logout = () => {
 }
 </script>
 
+
 <template>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <RouterLink class="navbar-brand" to="/">Home</RouterLink>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
-            <button class="btn btn-primary" v-else @click="logout">Logoff</button>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
-          </li>
-        </ul>
-        <form class="d-flex search-bar" role="search">
-          <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success search-button" type="submit">Search</button>
-        </form>
-      </div>
+    <div class="container-fluid" style="margin-top: 70px;"> <!-- Remplacez 'container' par 'container-fluid' -->
+      <header class="header">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <RouterLink class="navbar-brand" to="/">Home</RouterLink>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
+                  <button class="btn btn-primary" v-else @click="logout">Logoff</button>
+                </li>
+                <li class="nav-item">
+                  <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
+                </li>
+                <li class="nav-item">
+                  <RouterLink class="nav-link" to="/cart">Panier</RouterLink>
+                </li>
+              </ul>
+              <form class="d-flex search-bar" role="search">
+                <input class="form-control me-2 search-input" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success search-button" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
     </div>
-  </nav>
-</template>
+  </template>
+
+
 
 <style scoped>
 .search-bar {
@@ -63,10 +73,16 @@ const logout = () => {
   padding: 8px 16px;
   cursor: pointer;
 }
-</style>
+ .header {
+   position: fixed;
+   z-index: 1;
+ }
 
+.container {
+  position: relative;
+  z-index: 2;
+}
 
-<style scoped>
 nav {
   position: fixed;
   top: 0;
