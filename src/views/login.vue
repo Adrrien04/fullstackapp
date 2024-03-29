@@ -13,6 +13,7 @@
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
     <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
+    <p> If you don't have an account yet please <RouterLink to="/register">Register</RouterLink>.</p>
   </div>
 </template>
 
@@ -63,6 +64,11 @@ const login = async () => {
   align-items: center;
   height: 100vh;
   padding: 1rem;
+}
+form {
+  border: 1px solid #000; 
+  padding: 20px;
+  border-radius: 10px; 
 }
 
 </style>

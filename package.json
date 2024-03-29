@@ -16,6 +16,7 @@
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "jquery": "^3.7.1",
     "koa": "^2.15.2",
     "koa-bodyparser": "^4.4.1",
     "mdb-vue-ui-kit": "^4.1.1",

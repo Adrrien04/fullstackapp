@@ -12,7 +12,7 @@ const logout = () => {
 
 
 <template>
-    <div class="container-fluid" style="margin-top: 70px;"> <!-- Remplacez 'container' par 'container-fluid' -->
+    <div class="container-fluid" style="margin-top: 70px;"> 
       <header class="header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
@@ -24,14 +24,14 @@ const logout = () => {
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
-                  <button class="btn btn-primary" v-else @click="logout">Logoff</button>
+                  <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
                 </li>
                 <li class="nav-item">
                   <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
                 </li>
                 <li class="nav-item">
-                  <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
+                  <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
+                  <button class="btn btn-primary" v-else @click="logout">Logoff</button>
                 </li>
               </ul>
               <form class="d-flex search-bar" role="search">
@@ -101,4 +101,5 @@ nav .btn:hover {
   color: #ddd;
   text-decoration: none;
 }
+
 </style>

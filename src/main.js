@@ -4,6 +4,7 @@ import router from './router'
 import store from "./store.js";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'swiper/swiper-bundle.css';
+import 'bootstrap';
 
 const app = createApp(App)
 

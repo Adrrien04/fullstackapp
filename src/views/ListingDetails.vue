@@ -1,17 +1,38 @@
 <template>
-  <div class="text-center">
-    <h1>{{ listing.title }}</h1>
-    <img :src="listing.image" :alt="listing.title" class="img-fluid listing-image"/>
-    <p>{{ listing.description }}</p>
-    <p>Price : {{ listing.price }}&euro; per day</p>
-    <p>Location : {{ listing.location }}</p>
-    <p>Rooms : {{ listing.rooms }}</p>
+  <div class="container">
+    <div class="card mb-3">
+      <div id="carouselExample" class="carousel slide card-img-top" style="max-width: 600px; margin: 0 auto;">
+        <div class="carousel-inner">
+          <div v-for="(image, index) in listing.images" :key="index" class="carousel-item"
+               :class="{ 'active': index === 0 }">
+            <img :src="image" class="d-block w-100" :alt="`Image ${index + 1}`">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ listing.title }}</h5>
+        <p class="card-text">{{ listing.description }}</p>
+        <p class="card-text">Price : {{ listing.price }}&euro; per day</p>
+        <p class="card-text">Location : {{ listing.location }}</p>
+        <p class="card-text">Rooms : {{ listing.rooms }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
+
 <script>
 import axios from 'axios';
-
+import $ from 'jquery';
+import 'bootstrap';
 export default {
   name: 'ListingDetails',
   data() {
@@ -26,41 +47,22 @@ export default {
     } catch (error) {
       console.error(error);
     }
+  },
+  mounted() {
+    this.$nextTick(function () {
+      $('#carouselExample').carousel();
+    })
   }
 }
 </script>
-
 <style scoped>
-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
+.container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 5px;
 }
 
-h1 {
-  color: #333;
-  font-size: 2em;
-  margin-bottom: 20px;
+.card-title {
+  font-size: 1.5em;
 }
-
-img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-p {
-  color: #666;
-  font-size: 1.2em;
-  margin-bottom: 10px;
-}
-
- .listing-image {
-   width: 40%;
-   height: 500px;
-   object-fit: cover;
- }
 </style>
