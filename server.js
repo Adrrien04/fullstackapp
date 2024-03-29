@@ -3,9 +3,12 @@ import Router from '@koa/router';
 import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
 import User from './models/User.js';
+import House from './models/House.js';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
+
+
 
 dotenv.config();
 
@@ -52,7 +55,18 @@ router.post('/login', async (ctx) => {
     console.log('Logged in successfully:', username);
     ctx.body = { message: 'Logged in successfully' };
 });
-
+router.get('/houses', async (ctx) => {
+    try {
+        console.log('Fetching houses...');
+        const houses = await House.find();
+        console.log('Fetched houses:', houses);
+        ctx.body = houses;
+    } catch (err) {
+        console.error('Error fetching houses:', err);
+        ctx.status = 400;
+        ctx.body = { message: err.message };
+    }
+});
 app.use(cors());
 app.use(bodyParser());
 app.use(router.routes()).use(router.allowedMethods());

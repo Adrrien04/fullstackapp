@@ -14,63 +14,60 @@
       <button class="search-button">Rechercher</button>
     </div>
 
-    <div class="featured-listings">
-      <div
-          class="listing-card"
-          v-for="listing in filteredListings"
-          :key="listing.id"
-      >
-        <img :src="listing.image" :alt="listing.title"/>
-        <h2>{{ listing.title }}</h2>
-        <p>{{ listing.description }}</p>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col" v-for="listing in filteredListings" :key="listing.id">
+        <div class="card h-100">
+          <img :src="listing.image" class="card-img-top" :alt="listing.title"/>
+          <div class="card-body">
+            <h5 class="card-title">{{ listing.title }}</h5>
+            <p class="card-text">{{ listing.description }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-body-secondary">Dernière mise à jour il y a 3 minutes</small>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Ajoutez plus de sections (témoignages, destinations populaires, etc.) -->
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: "AboutView",
+  name: "HomeView",
   data() {
     return {
       searchTerm: "",
-      listings: [
-        {
-          id: 1,
-          title: "Logement 1",
-          description: "Description du logement 1",
-          image:
-              "https://i.pinimg.com/564x/cf/06/d1/cf06d1819cf8c76930dd94ee94d06d29.jpg",
-        },
-        {
-          id: 2,
-          title: "Logement 2",
-          description: "Description du logement 2",
-          image: "https://i.pinimg.com/736x/00/8f/fb/008ffb6879c85f90274158b2c5f71373.jpg",
-        },
-        {
-          id: 3,
-          title: "Logement 3",
-          description: "Description du logement 3",
-          image: "https://i.pinimg.com/564x/ba/51/af/ba51affdb2b1a2fc48381602cc93aa9b.jpg",
-        },
-        // Ajoutez plus de logements ici
-      ],
+      listings: [],
     };
   },
   computed: {
     filteredListings() {
       return this.listings.filter((listing) =>
-          listing.title.includes(this.searchTerm)
+          listing.title.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     },
+  },
+  methods: {
+    async fetchListings() {
+      try {
+        const response = await axios.get('https://3334-209-206-8-34.ngrok-free.app/houses');
+        this.listings = Array.isArray(response.data) ? response.data : [];
+      } catch (error) {
+        console.error(error);
+        this.listings = [];
+      }
+    }
+  },
+  created() {
+    this.fetchListings();
   },
 };
 </script>
 
+
 <style scoped>
-/* Styles pour la mise en page */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
