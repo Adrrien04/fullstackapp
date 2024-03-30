@@ -64,5 +64,33 @@ form {
   border-radius: 10px;
 }
 </style>
+
 <script setup>
+import {ref} from 'vue'
+import axios from 'axios'
+const image = ref('')
+const title = ref('')
+const description = ref('')
+const price = ref('')
+const location = ref('')
+const rooms = ref('')
+const message = ref('')
+const isSuccess = ref(false)
+const addHousing = async () => {
+  try {
+    const response = await axios.post('http://localhost:3000/houses', {
+      image: image.value,
+      title: title.value,
+      description: description.value,
+      price: price.value,
+      location: location.value,
+      rooms: rooms.value
+    });
+    isSuccess.value = true;
+    message.value = 'Housing added successfully';
+  } catch (err) {
+    isSuccess.value = false;
+    message.value = 'Error adding housing';
+  }
+}
 </script>
