@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import {useStore} from 'vuex' // Import useStore from Vuex
 import HomeView from '../views/HomeView.vue'
 import CartView from '../views/CartView.vue'
+import addHousing from '../views/addHousing.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,12 @@ const router = createRouter({
             name: 'cart',
             component: CartView,
         },
+        {
+            path: '/addHousing',
+            name: 'addHousing',
+            component: addHousing,
+            meta: { requiresAuth: true }
+        }
     ]
 })
 

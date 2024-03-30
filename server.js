@@ -84,6 +84,18 @@ router.get('/houses/:id', async (ctx) => {
     }
 });
 
+router.post('/houses', async (ctx) => {
+    const { image, title, description, price, location, rooms } = ctx.request.body;
+    const newHouse = new House({ image, title, description, price, location, rooms });
+    try {
+        await newHouse.save();
+        ctx.body = { message: 'House added successfully', house: newHouse };
+    } catch (err) {
+        ctx.status = 400;
+        ctx.body = { message: err.message };
+    }
+});
+
 
 app.use(cors());
 app.use(bodyParser());

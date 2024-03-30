@@ -12,7 +12,7 @@ const logout = () => {
 
 
 <template>
-    <div class="container-fluid" style="margin-top: 70px;"> 
+    <div class="container-fluid" style="margin-top: 70px;">
       <header class="header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
@@ -25,6 +25,9 @@ const logout = () => {
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                   <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
+                </li>
+                <li class="nav-item" v-if="store.state.isLoggedIn">
+                  <RouterLink class="nav-link" to="/addHousing">Add your house</RouterLink>
                 </li>
                 <li class="nav-item">
                   <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
