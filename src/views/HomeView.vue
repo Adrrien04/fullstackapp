@@ -3,6 +3,7 @@
     <header class="header">
 
     </header>
+
     <div class="input-group mb-3">
       <input
           type="text"
@@ -10,7 +11,19 @@
           class="form-control"
           placeholder="Search for rooms"
       />
-      <button class="btn btn-primary">Search</button>
+      <input
+          type="number"
+          v-model="searchPrice"
+          class="form-control"
+          placeholder="Search by price"
+      />
+      <input
+          type="number"
+          v-model="searchRooms"
+          class="form-control"
+          placeholder="Search by number of rooms"
+      />
+      <button class="btn btn-primary" @click="search">Search</button>
     </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -22,9 +35,11 @@
           <div class="card-body">
             <h5 class="card-title">{{ listing.title }}</h5>
             <p class="card-text">{{ listing.description }}</p>
+            <p class="card-text">{{listing.price}}€ per night</p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Last updated : 3 minutes ago</small>
+            <small class="text-muted">For more information click on the picture.</small>
+            <br>
             <button @click="addToCart(listing)" class="btn btn-primary">Add to cart</button>
           </div>
         </div>
@@ -37,25 +52,32 @@
 <script>
 import axios from 'axios';
 
-
 export default {
   name: "HomeView",
   data() {
     return {
       searchTerm: "",
+      searchPrice: "",
+      searchRooms: "",
       listings: [],
     };
   },
   computed: {
     filteredListings() {
-      return this.listings.filter((listing) =>
-          listing.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
+      return this.listings.filter((listing) => {
+        let matchesSearchTerm = listing.title.toLowerCase().includes(this.searchTerm.toLowerCase());
+        let matchesSearchPrice = this.searchPrice ? listing.price <= this.searchPrice : true;
+        let matchesSearchRooms = this.searchRooms ? listing.rooms == this.searchRooms : true;
+        return matchesSearchTerm && matchesSearchPrice && matchesSearchRooms;
+      });
     },
   },
   methods: {
     addToCart(listing) {
       this.$store.dispatch('addToCart', listing);
+    },
+    search() {
+      this.fetchListings();
     },
     async fetchListings() {
       try {
