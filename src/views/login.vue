@@ -4,7 +4,7 @@
     <form @submit.prevent="login" class="mx-auto" style="max-width: 300px;">
       <div class="form-group">
         <label for="username">Username:</label>
-        <input id="username" v-model="username" type="text" required class="form-control">
+        <input id="username" v-model="username" type="text" required class="form-control" placeholder="ex: JohnTheBest">
       </div>
       <div class="form-group">
         <label for="password">Password:</label>

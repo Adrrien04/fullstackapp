@@ -540,3 +540,9 @@ wrapper {
     text-decoration: none;
     padding: 10px;
 }
+
+.centered-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

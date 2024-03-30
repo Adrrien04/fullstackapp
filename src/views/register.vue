@@ -4,19 +4,19 @@
     <form @submit.prevent="register" class="mx-auto" style="max-width: 300px;">
       <div class="form-group">
         <label for="name">Name:</label>
-        <input id="name" v-model="name" type="text" required class="form-control">
+        <input id="name" v-model="name" type="text" required class="form-control" placeholder="John">
       </div>
       <div class="form-group">
         <label for="surname">Surname:</label>
-        <input id="surname" v-model="surname" type="text" required class="form-control">
+        <input id="surname" v-model="surname" type="text" required class="form-control" placeholder="Doe">
       </div>
       <div class="form-group">
         <label for="username">Username:</label>
-        <input id="username" v-model="username" type="text" required class="form-control">
+        <input id="username" v-model="username" type="text" required class="form-control" placeholder="JohnTheBest">
       </div>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input id="email" v-model="email" type="email" required class="form-control">
+        <input id="email" v-model="email" type="email" required class="form-control" placeholder="john.doe@example.com">
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
