@@ -1,11 +1,14 @@
 <template>
   <div>
-    <h2>C A R T</h2>
+    <div class="container text-center">
+    <header class="header">
+      <h2> Your Cart 🛒</h2>
+    </header>
     <div v-if="!isLoggedIn" class="d-flex justify-content-center align-items-center">
       <div class="alert alert-danger" role="alert">
         Please log in to add your rent in the cart
         <br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<RouterLink class="btn btn-primary" to="/login">Login</RouterLink>
+        <RouterLink class="btn button" to="/login">Login</RouterLink>
       </div>
     </div>
     <div v-else>
@@ -19,11 +22,15 @@
           <h5 class="card-title">{{ item.title }}</h5>
           <p class="card-text">{{ item.description }}</p>
           <p class="card-text">{{ item.price }} €</p>
+          <router-link :to="`/listing/${item._id}`">
+                  <button class="btn button">Reserve</button>
+          </router-link>
           <button @click="removeFromCart(item)" class="btn btn-primary">Supprimer</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -46,7 +53,12 @@ export default {
 };
 </script>
 <style scoped>
-
+.container {
+  margin-top: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 h2 {
   display: flex;
   justify-content: center;
@@ -81,5 +93,25 @@ h2 {
   align-items: center;
   height: 100vh;
 }
+.button{
+  background-color: #A4D4A2;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+    .button:hover {
+      transform: scale(1.1);
+    }
+  
+    .button:active {
+      transform: scale(0.9);
+    }
+    .card-img-top {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
 
 </style>
