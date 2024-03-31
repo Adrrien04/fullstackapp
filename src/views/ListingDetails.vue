@@ -18,13 +18,41 @@
         </button>
       </div>
       <div class="card-body">
+        <b-col>
         <div class="info">
         <h5 class="card-title">{{ listing.title }}</h5>
         <p class="card-text">{{ listing.description }}</p>
-        <p class="card-text">Price : {{ listing.price }}&euro; per day</p>
-        <p class="card-text">Location : {{ listing.location }}</p>
-        <p class="card-text">Rooms : {{ listing.rooms }}</p>
+        <p class="card-text">  💳 Price : {{ listing.price }}&euro; per day</p>
+        <p class="card-text"> 📍 Location : {{ listing.location }}</p>
+        <p class="card-text"> 🛏️ Rooms : {{ listing.rooms }}</p>
+        <p>Number of days: {{ numberOfDays }}</p>
+        <p>Total price: {{ numberOfDays * listing.price }}&euro;</p>
           </div>
+        </b-col>
+         <b-col md="6">
+            <div>
+              <b-row>
+                <b-col md="auto">
+                  <date-picker v-model="startDate" @input="onContext"></date-picker>
+                </b-col>
+                <b-col>
+                  <p>Check-in date: <b>'{{ startDate }}'</b></p>
+                  <pre class="small">{{ context }}</pre>
+                </b-col>
+              </b-row>
+
+              <b-row>
+                <b-col md="auto">
+                  <date-picker v-model="endDate" @input="onContext"></date-picker>
+                </b-col>
+                <b-col>
+                  <p>Check-out date: <b>'{{ endDate }}'</b></p>
+                  <pre class="small">{{ context }}</pre>
+                </b-col>
+              </b-row>
+            </div>
+          </b-col>
+        </b-row>
         <div style="width: 100%; height: 400px;">
           <iframe :src="'https://www.google.com/maps?q=' + encodeURIComponent(listing.location) + '&output=embed'"
             width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
@@ -45,6 +73,26 @@ export default {
   data() {
     return {
       listing: {}
+      startDate: null,
+      endDate: null,
+      context: null
+    }
+  },
+  methods: {
+    onContext(date) {
+      this.context = date
+    }
+  },
+   computed: {
+    numberOfDays() {
+      if (this.startDate && this.endDate) {
+        const start = new Date(this.startDate);
+        const end = new Date(this.endDate);
+        const diffInMilliseconds = end - start;
+        const diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
+        return Math.round(diffInDays) + 1;
+      }
+      return 0;
     }
   },
   async created() {
