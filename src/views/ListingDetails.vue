@@ -72,7 +72,7 @@ export default {
   name: 'ListingDetails',
   data() {
     return {
-      listing: {}
+      listing: {},
       startDate: null,
       endDate: null,
       context: null
