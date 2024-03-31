@@ -135,4 +135,9 @@ export default {
   float: right;
   background-color: #ff6347
 }
+.listing-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 </style>

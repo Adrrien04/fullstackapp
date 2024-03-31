@@ -139,7 +139,7 @@ const isSuccess = ref(false)
 const addHousing = async () => {
   try {
     const response = await axios.post('http://localhost:3000/houses', {
-      images: [image1.value, image2.value, image3.value],
+      images: [image.value, image1.value, image2.value, image3.value],
       title: title.value,
       description: description.value,
       price: price.value,
