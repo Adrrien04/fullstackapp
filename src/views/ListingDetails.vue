@@ -18,11 +18,18 @@
         </button>
       </div>
       <div class="card-body">
+        <div class="info">
         <h5 class="card-title">{{ listing.title }}</h5>
         <p class="card-text">{{ listing.description }}</p>
         <p class="card-text">Price : {{ listing.price }}&euro; per day</p>
         <p class="card-text">Location : {{ listing.location }}</p>
         <p class="card-text">Rooms : {{ listing.rooms }}</p>
+          </div>
+        <div style="width: 100%; height: 400px;">
+          <iframe :src="'https://www.google.com/maps?q=' + encodeURIComponent(listing.location) + '&output=embed'"
+            width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </div>
