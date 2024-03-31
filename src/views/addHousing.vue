@@ -1,8 +1,12 @@
 
 
 <template>
+  <div class="app">
   <div class="add-housing container">
-    <h1 class="text-center">A D D &nbsp Y O U R &nbsp H O U S I N G</h1>
+       <div class="header">
+            <img src="/src/assets/LogoApp.png" alt="Logo" class="logo">
+            <h1 class="housing-title">ADD YOUR HOUSING 🏠🏢</h1>
+      </div>
     <div class="form-container">
       <form @submit.prevent="addHousing" class="mx-auto" style="max-width: 300px;">
         <div class="form-group">
@@ -34,14 +38,23 @@
     </div>
     <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
   </div>
+  </div>
 </template>
 
 <style scoped>
+  .app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .add-housing {
   margin: 0 auto;
   padding: 2rem;
   border: 1px solid var(--color-border);
   border-radius: 4px;
+  background-color: #f9f9f9;
 }
 
 .add-housing .form-container {
@@ -49,19 +62,51 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  height: 80vh;
+  padding: 5rem;
 
 }
 
-.add-housing form {
-  margin: auto;
-  width: 500px;
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
 }
 
-form {
-  border: 1px solid #000;
-  padding: 20px;
-  border-radius: 10px;
+.housing-title {
+    font-size: 2em;
+    margin-left: 1rem;
+}
+
+.logo {
+    height: 3em;
+}
+
+.button {
+    background-color: #A4D4A2;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+.form-group {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: 100%;
 }
 </style>
 
