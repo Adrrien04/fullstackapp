@@ -18,44 +18,48 @@
         </button>
       </div>
       <div class="card-body">
-        <b-col>
-        <div class="info">
         <h5 class="card-title">{{ listing.title }}</h5>
-        <p class="card-text">{{ listing.description }}</p>
-        <p class="card-text">  💳 Price : {{ listing.price }}&euro; per day</p>
-        <p class="card-text"> 📍 Location : {{ listing.location }}</p>
-        <p class="card-text"> 🛏️ Rooms : {{ listing.rooms }}</p>
-        <p>Number of days: {{ numberOfDays }}</p>
-        <p>Total price: {{ numberOfDays * listing.price }}&euro;</p>
-          </div>
-        </b-col>
-         <b-col md="6">
-            <div>
-              <b-row>
-                <b-col md="auto">
-                  <date-picker v-model="startDate" @input="onContext"></date-picker>
-                </b-col>
-                <b-col>
-                  <p>Check-in date: <b>'{{ startDate }}'</b></p>
-                  <pre class="small">{{ context }}</pre>
-                </b-col>
-              </b-row>
+        <div class="container ">
+          <div class="row gx-5">
+            <div class="col">
+              <h5>Description</h5>
+              <div class="info">
 
-              <b-row>
-                <b-col md="auto">
-                  <date-picker v-model="endDate" @input="onContext"></date-picker>
-                </b-col>
-                <b-col>
-                  <p>Check-out date: <b>'{{ endDate }}'</b></p>
-                  <pre class="small">{{ context }}</pre>
-                </b-col>
-              </b-row>
+                <p class="card-text">{{ listing.description }}</p>
+                <p class="card-text"> 💳 Price : {{ listing.price }}&euro; per day</p>
+                <p class="card-text"> 📍 Location : {{ listing.location }}</p>
+                <p class="card-text"> 🛏️ Rooms : {{ listing.rooms }}</p>
+                <p>Number of days: {{ numberOfDays }}</p>
+              </div>
+
             </div>
-          </b-col>
-        </b-row>
+            <div class="col">
+              <div class="p-3"></div>
+              <div>
+                <div class="row gx-5">
+                  <div class="col">
+                    <div class="p-3">Check-in date :</div>
+                    <date-picker v-model="startDate" @input="onContext"></date-picker>
+
+                    <pre class="small">{{ context }}</pre>
+                  </div>
+
+                  <div class="col">
+                    <div class="p-3">Check-out date :</div>
+                    <date-picker v-model="endDate" @input="onContext"></date-picker>
+
+                    <pre class="small">{{ context }}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="price-box">Total price: {{ numberOfDays * listing.price }}&euro;</p>
+        </div>
+        <h4>Where you’ll be</h4>
         <div style="width: 100%; height: 400px;">
           <iframe :src="'https://www.google.com/maps?q=' + encodeURIComponent(listing.location) + '&output=embed'"
-            width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
+                  width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
           </iframe>
         </div>
       </div>
@@ -68,6 +72,7 @@
 import axios from 'axios';
 import $ from 'jquery';
 import 'bootstrap';
+
 export default {
   name: 'ListingDetails',
   data() {
@@ -83,7 +88,7 @@ export default {
       this.context = date
     }
   },
-   computed: {
+  computed: {
     numberOfDays() {
       if (this.startDate && this.endDate) {
         const start = new Date(this.startDate);
@@ -119,5 +124,15 @@ export default {
 
 .card-title {
   font-size: 1.5em;
+}
+
+.price-box {
+  border: 5px solid #ff6347;
+  /* Change to the color you want */
+  padding: 10px;
+  color: white;
+  /* Change to the color you want */
+  float: right;
+  background-color: #ff6347
 }
 </style>

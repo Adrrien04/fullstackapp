@@ -85,8 +85,8 @@ router.get('/houses/:id', async (ctx) => {
 });
 
 router.post('/houses', async (ctx) => {
-    const { image, title, description, price, location, rooms } = ctx.request.body;
-    const newHouse = new House({ image, title, description, price, location, rooms });
+    const { images, title, description, price, location, rooms } = ctx.request.body;
+    const newHouse = new House({ images, title, description, price, location, rooms });
     try {
         await newHouse.save();
         ctx.body = { message: 'House added successfully', house: newHouse };

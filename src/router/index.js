@@ -1,5 +1,5 @@
-import {createRouter, createWebHistory} from 'vue-router'
-import {useStore} from 'vuex' // Import useStore from Vuex
+import { createRouter, createWebHistory } from 'vue-router'
+import { useStore } from 'vuex'
 import HomeView from '../views/HomeView.vue'
 import CartView from '../views/CartView.vue'
 import addHousing from '../views/addHousing.vue'
@@ -34,6 +34,12 @@ const router = createRouter({
             component: CartView,
         },
         {
+            path: '/about',
+            name: 'about',
+            component: () => import('../views/AboutView.vue')
+        },
+
+        {
             path: '/addHousing',
             name: 'addHousing',
             component: addHousing,
@@ -46,7 +52,7 @@ router.beforeEach((to, from, next) => {
     const store = useStore()
     if (to.matched.some(record => record.meta.requiresAuth)) {
         if (!store.state.isLoggedIn) {
-            next({name: 'login'})
+            next({ name: 'login' })
         } else {
             next()
         }

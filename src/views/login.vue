@@ -1,26 +1,26 @@
 <template>
   <div class="app">
-  <div class="login container">
-    <div class="header">
-      <img src="/src/assets/LogoApp.png" alt="Logo" class="logo">
-      <h1 class="login-title">Login</h1>
+    <div class="login container">
+      <div class="header">
+        <img src="/src/assets/LogoApp.png" alt="Logo" class="logo">
+        <h1 class="login-title">Login</h1>
+      </div>
+      <form @submit.prevent="login" class="mx-auto" style="max-width: 300px;">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input id="username" v-model="username" type="text" required class="form-control" placeholder="ex: JohnTheBest">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input id="password" v-model="password" type="password" required class="form-control">
+        </div>
+        <button type="submit" class="btn button">Login</button>
+      </form>
+      <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
+      <p> If you don't have an account yet please <RouterLink to="/register">Register</RouterLink>.</p>
     </div>
-    <form @submit.prevent="login" class="mx-auto" style="max-width: 300px;">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input id="username" v-model="username" type="text" required class="form-control" placeholder="ex: JohnTheBest">
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input id="password" v-model="password" type="password" required class="form-control">
-      </div>
-      <button type="submit" class="btn button">Login</button>
-    </form>
-    <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
-    <p> If you don't have an account yet please <RouterLink to="/register">Register</RouterLink>.</p>
   </div>
-  </div>
-  
+
 </template>
 
 <script setup>
@@ -36,7 +36,7 @@ const isSuccess = ref(false)
 
 const login = async () => {
   try {
-    const response = await axios.post(' https://3334-209-206-8-34.ngrok-free.app/login', {
+    const response = await axios.post('http://localhost:3000/login', {
       username: username.value,
       password: password.value
     })
@@ -55,7 +55,7 @@ const login = async () => {
 </script>
 
 <style scoped>
-  .app {
+.app {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +78,7 @@ const login = async () => {
   height: 80vh;
   padding: 5rem;
 }
-  .header {
+.header {
   display: flex;
   align-items: center;
   justify-content: center;

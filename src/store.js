@@ -4,6 +4,7 @@ export default createStore({
     state: {
         isLoggedIn: false,
         cart: [],
+        userName: '', // Make sure this property is correctly initialized
     },
     mutations: {
         setLoggedIn(state, value) {
@@ -27,5 +28,4 @@ export default createStore({
             commit('removeFromCart', item);
         },
     },
-
 })

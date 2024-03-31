@@ -51,7 +51,7 @@ export default {
   flex-direction: column;
   height: 100vh;
   padding-top: 2%;
-  
+
 }
 body {
   font-family: Arial, sans-serif;

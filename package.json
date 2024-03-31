@@ -15,6 +15,7 @@
     "bcrypt": "^5.1.1",
     "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
+    "datepicker": "^0.0.0",
     "dotenv": "^16.4.5",
     "jquery": "^3.7.1",
     "koa": "^2.15.2",
@@ -25,6 +26,7 @@
     "vue": "^3.4.21",
     "vue-awesome-swiper": "^5.0.1",
     "vue-router": "^4.3.0",
+    "vue3-datepicker": "^0.4.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
