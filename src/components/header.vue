@@ -16,6 +16,10 @@ const logout = () => {
       <header class="header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
+            <RouterLink class="navbar-brand" to="/">
+            <img src="/src/assets/LogoApp.png" alt="Logo" class="logo">
+          </RouterLink>
+
             <RouterLink class="navbar-brand" to="/">Home</RouterLink>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,11 +34,14 @@ const logout = () => {
                   <RouterLink class="nav-link" to="/addHousing">Add your house</RouterLink>
                 </li>
                 <li class="nav-item">
+                <RouterLink class="nav-link" to="/about">About</RouterLink>
+              </li>
+                <li class="nav-item">
                   <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/register">Register</RouterLink>
                 </li>
                 <li class="nav-item">
                   <RouterLink class="nav-link" v-if="!store.state.isLoggedIn" to="/login">Login</RouterLink>
-                  <button class="btn btn-primary" v-else @click="logout">Logoff</button>
+                  <button class="btn button" v-else @click="logout">Logoff</button>
                 </li>
               </ul>
               <form class="d-flex search-bar" role="search">
@@ -69,7 +76,15 @@ const logout = () => {
 }
 
 .search-button {
-  background-color: #0070f3;
+  background-color: #A4D4A2;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+  .button{
+background-color: #A4D4A2;
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -104,5 +119,41 @@ nav .btn:hover {
   color: #ddd;
   text-decoration: none;
 }
+.logo {
+  height: 70px;
+  
+  margin-right: 10px;
+}
+.logo:hover {
+  transform: scale(1.1); 
+}
+
+.logo:active {
+  transform: scale(0.9); 
+}
+.nav-link,.navbar-brand {
+  
+  margin: 0 10px;
+  transition: transform 0.3s ease-in-out;
+  
+}
+
+.nav-link:hover,.navbar-brand:hover {
+  text-decoration: none;
+  transform: scale(1.1);
+ 
+}
+
+.nav-link:active,.navbar-brand:active {
+  transform: scale(0.9);
+}
+.button:hover {
+      transform: scale(1.1);
+    }
+  
+.button:active {
+      transform: scale(0.9);
+    }
+  
 
 </style>
