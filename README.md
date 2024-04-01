@@ -33,7 +33,7 @@ In this readme there will be explanation about MongoDB furthermore, if you want 
 It is an mandatory step, if it is not executed the list will not appear and you will not be able to create an account nor register.
 ## Authors
 
-List of [contributors](https://github.com/Adrrien04/phonexa/graphs/contributors) 
+List of [contributors](https://github.com/Adrrien04/fullstackapp/graphs/contributors) 
 
 - Adrrien04 (Adrrien)
 - Fluffykoo (Oumou) 
