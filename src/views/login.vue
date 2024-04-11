@@ -15,6 +15,7 @@
           <input id="password" v-model="password" type="password" required class="form-control">
         </div>
         <button type="submit" class="btn button">Login</button>
+        <signingoogle />
       </form>
       <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
       <p> If you don't have an account yet please <RouterLink to="/register">Register</RouterLink>.</p>
@@ -27,6 +28,7 @@
 import {ref} from 'vue'
 import axios from 'axios'
 import { useStore } from 'vuex'
+import signingoogle from './../components/signingoogle.vue'
 
 const store = useStore()
 const username = ref('')

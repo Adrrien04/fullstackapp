@@ -5,42 +5,27 @@
     </header>
 
     <div class="input-group mb-3">
-      <input
-          type="text"
-          v-model="searchTerm"
-          class="form-control"
-          placeholder="Search for rooms"
-      />
-      <input
-          type="number"
-          v-model="searchPrice"
-          class="form-control"
-          placeholder="Search by price"
-      />
-      <input
-          type="number"
-          v-model="searchRooms"
-          class="form-control"
-          placeholder="Search by number of rooms"
-      />
-      <button class="btn btn-primary" @click="search">Search</button>
+      <input type="text" v-model="searchTerm" class="form-control" placeholder="Search for rooms" />
+      <input type="number" v-model="searchPrice" class="form-control" placeholder="Search by price" />
+      <input type="number" v-model="searchRooms" class="form-control" placeholder="Search by number of rooms" />
+      <button class="btn button" @click="search">Search</button>
     </div>
 
     <div class="row row-cols-1 row-cols-md-4 g-4">
       <div class="col" v-for="listing in filteredListings" :key="listing._id">
         <div class="card h-100">
           <router-link :to="`/listing/${listing._id}`">
-            <img :src="listing.images[0]" class="card-img-top img-fluid listing-image" :alt="listing.title"/>
+            <img :src="listing.images[0]" class="card-img-top img-fluid listing-image" :alt="listing.title" />
           </router-link>
           <div class="card-body">
             <h5 class="card-title">{{ listing.title }}</h5>
             <p class="card-text">{{ listing.description }}</p>
-            <p class="card-text">{{listing.price}}€ per night</p>
+            <p class="card-text">{{ listing.price }}€ per night</p>
           </div>
           <div class="card-footer">
             <small class="text-muted">For more information click on the picture.</small>
             <br>
-            <button @click="addToCart(listing)" class="btn btn-primary">Add to cart</button>
+            <button @click="addToCart(listing)" class="btn button">Add to cart</button>
           </div>
         </div>
       </div>
@@ -56,7 +41,6 @@ export default {
   name: "HomeView",
   data() {
     return {
-      houses: [],
       searchTerm: "",
       searchPrice: "",
       searchRooms: "",
@@ -80,6 +64,7 @@ export default {
   methods: {
     addToCart(listing) {
       this.$store.dispatch('addToCart', listing);
+      window.alert('Item added to cart!');
     },
     search() {
       this.fetchListings();
@@ -130,26 +115,8 @@ body {
   height: 200px;
   object-fit: cover;
 }
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  padding: 8px;
-}
-
-.search-button {
-  background-color: #0070f3;
+.button {
+  background-color: #A4D4A2;
   color: #ffffff;
   border: none;
   border-radius: 8px;

@@ -19,7 +19,6 @@ const logout = () => {
           <RouterLink class="navbar-brand" to="/">
             <img src="/src/assets/LogoApp.png" alt="Logo" class="logo">
           </RouterLink>
-
           <RouterLink class="navbar-brand" to="/">Home</RouterLink>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
