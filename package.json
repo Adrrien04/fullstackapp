@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "concurrently \"npm run dev:vite\" \"node server.js\"",
     "test": "jest",
-    "dev": "vite",
+    "dev:vite": "vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -23,6 +24,7 @@
     "jsonwebtoken": "^9.0.2",
     "koa": "^2.15.2",
     "koa-bodyparser": "^4.4.1",
+    "koa-send": "^5.0.1",
     "mdb-vue-ui-kit": "^4.1.1",
     "mongoose": "^8.2.3",
     "popper.js": "^1.16.1",
@@ -41,6 +43,7 @@
     "babel-jest": "^26.6.3",
     "chai": "^4.2.0",
     "chai-http": "^4.4.0",
+    "concurrently": "^8.2.2",
     "jest": "^26.6.3",
     "jsdom": "^24.0.0",
     "jsdom-global": "^3.0.2",
