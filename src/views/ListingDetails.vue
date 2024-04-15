@@ -5,7 +5,7 @@
         <div class="carousel-inner">
           <div v-for="(image, index) in listing.images" :key="index" class="carousel-item"
                :class="{ 'active': index === 0 }">
-            <img :src="image" class="d-block w-100" :alt="`Image ${index + 1}`">
+            <img :src="image" class="d-block w-100 carousel-image" :alt="`Image ${index + 1}`">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -24,14 +24,12 @@
             <div class="col">
               <h5>Description</h5>
               <div class="info">
-
                 <p class="card-text">{{ listing.description }}</p>
                 <p class="card-text"> 💳 Price : {{ listing.price }}&euro; per day</p>
                 <p class="card-text"> 📍 Location : {{ listing.location }}</p>
                 <p class="card-text"> 🛏️ Rooms : {{ listing.rooms }}</p>
                 <p>Number of days: {{ numberOfDays }}</p>
               </div>
-
             </div>
             <div class="col">
               <div class="p-3"></div>
@@ -40,27 +38,25 @@
                   <div class="col">
                     <div class="p-3">Check-in date :</div>
                     <date-picker v-model="startDate" @input="onContext"></date-picker>
-
                     <pre class="small">{{ context }}</pre>
                   </div>
-
                   <div class="col">
                     <div class="p-3">Check-out date :</div>
                     <date-picker v-model="endDate" @input="onContext"></date-picker>
-
                     <pre class="small">{{ context }}</pre>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <p class="price-box">Total price: {{ numberOfDays * listing.price }}&euro;</p>
+          <p class="price-box">Total price: {{ numberOfDays * listing.price }}€</p>
+          <button class="btn btn-primary" @click="bookListing">Réserver</button>
+
         </div>
         <h4>Where you’ll be</h4>
         <div style="width: 100%; height: 400px;">
           <iframe :src="'https://www.google.com/maps?q=' + encodeURIComponent(listing.location) + '&output=embed'"
-                  width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
-          </iframe>
+                  width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -128,13 +124,14 @@ export default {
 
 .price-box {
   border: 5px solid #ff6347;
-  /* Change to the color you want */
+
   padding: 10px;
   color: white;
-  /* Change to the color you want */
+
   float: right;
   background-color: #ff6347
 }
+
 .listing-image {
   width: 100%;
   height: 200px;

@@ -5,9 +5,24 @@
     </header>
 
     <div class="input-group mb-3">
-      <input type="text" v-model="searchTerm" class="form-control" placeholder="Search for rooms" />
-      <input type="number" v-model="searchPrice" class="form-control" placeholder="Search by price" />
-      <input type="number" v-model="searchRooms" class="form-control" placeholder="Search by number of rooms" />
+      <input
+          type="text"
+          v-model="searchTerm"
+          class="form-control"
+          placeholder="Search for rooms"
+      />
+      <input
+          type="number"
+          v-model="searchPrice"
+          class="form-control"
+          placeholder="Search by price"
+      />
+      <input
+          type="number"
+          v-model="searchRooms"
+          class="form-control"
+          placeholder="Search by number of rooms"
+      />
       <button class="btn button" @click="search">Search</button>
     </div>
 
@@ -15,7 +30,7 @@
       <div class="col" v-for="listing in filteredListings" :key="listing._id">
         <div class="card h-100">
           <router-link :to="`/listing/${listing._id}`">
-            <img :src="listing.images[0]" class="card-img-top img-fluid listing-image" :alt="listing.title" />
+            <img :src="listing.images[0]" class="card-img-top img-fluid listing-image" :alt="listing.title"/>
           </router-link>
           <div class="card-body">
             <h5 class="card-title">{{ listing.title }}</h5>
@@ -41,6 +56,7 @@ export default {
   name: "HomeView",
   data() {
     return {
+      houses: [],
       searchTerm: "",
       searchPrice: "",
       searchRooms: "",
@@ -64,7 +80,6 @@ export default {
   methods: {
     addToCart(listing) {
       this.$store.dispatch('addToCart', listing);
-      window.alert('Item added to cart!');
     },
     search() {
       this.fetchListings();
@@ -115,6 +130,7 @@ body {
   height: 200px;
   object-fit: cover;
 }
+
 .button {
   background-color: #A4D4A2;
   color: #ffffff;

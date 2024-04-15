@@ -1,10 +1,8 @@
-
-
 <template>
   <div class="app">
     <div class="add-housing container">
       <div class="header">
-        <img src="/src/assets/LogoApp.png" alt="Logo" class="logo">
+        <img src= "@/assets/LogoApp.png" alt="Logo" class="logo">
         <h1 class="housing-title">ADD YOUR HOUSING 🏠🏢</h1>
       </div>
       <div class="form-container">
@@ -15,7 +13,8 @@
           </div>
           <div class="form-group">
             <label for="image1">Image URL 1:</label>
-            <input id="image1" v-model="image1" type="text" required class="form-control" placeholder="We need a second picture">
+            <input id="image1" v-model="image1" type="text" required class="form-control"
+                   placeholder="We need a second picture">
           </div>
           <div class="form-group">
             <label for="image2">Image URL 2:</label>
@@ -27,11 +26,13 @@
           </div>
           <div class="form-group">
             <label for="title">Title:</label>
-            <input id="title" v-model="title" type="text" required class="form-control" placeholder="Is it a loft, a villa ...">
+            <input id="title" v-model="title" type="text" required class="form-control"
+                   placeholder="Is it a loft, a villa ...">
           </div>
           <div class="form-group">
             <label for="description">Description:</label>
-            <input id="description" v-model="description" type="text" required class="form-control" placeholder="Make an incredible description !">
+            <input id="description" v-model="description" type="text" required class="form-control"
+                   placeholder="Make an incredible description !">
           </div>
           <div class="form-group">
             <label for="price">Price:</label>
@@ -39,16 +40,21 @@
           </div>
           <div class="form-group">
             <label for="location">Location:</label>
-            <input id="location" v-model="location" type="text" required class="form-control" placeholder="Where is this beautiful place ?">
+            <input id="location" v-model="location" type="text" required class="form-control"
+                   placeholder="Where is this beautiful place ?">
           </div>
           <div class="form-group">
             <label for="rooms">Rooms:</label>
-            <input id="rooms" v-model="rooms" type="number" required class="form-control" placeholder="How Many rooms are there ?">
+            <input id="rooms" v-model="rooms" type="number" required class="form-control"
+                   placeholder="How Many rooms are there ?">
           </div>
           <button type="submit" class="btn btn-primary">Add Housing</button>
         </form>
       </div>
-      <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{ message }}</div>
+      <div v-if="message" class="alert" :class="{'alert-success': isSuccess, 'alert-danger': !isSuccess}">{{
+          message
+        }}
+      </div>
     </div>
   </div>
 </template>
@@ -62,9 +68,9 @@
 }
 
 .add-housing {
-  margin: 0 auto;
+  margin-top: 80px;
   padding: 2rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid ;
   border-radius: 4px;
   background-color: #f9f9f9;
 }
@@ -105,6 +111,9 @@
   width: 100%;
 }
 
+.form-container {
+  margin-top: 70px;
+}
 
 .form-group {
   width: 100%;
@@ -125,6 +134,7 @@
 <script setup>
 import {ref} from 'vue'
 import axios from 'axios'
+
 const image = ref('')
 const image1 = ref('')
 const image2 = ref('')

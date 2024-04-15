@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { useStore } from 'vuex'
+import {createRouter, createWebHistory} from 'vue-router'
+import {useStore} from 'vuex'
 import HomeView from '../views/HomeView.vue'
 import CartView from '../views/CartView.vue'
 import addHousing from '../views/addHousing.vue'
@@ -22,19 +22,18 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component: HomeView,
-            //meta: { requiresAuth: true }
         },
         {
             path: '/shop',
             name: 'shop',
             component: ShopView,
-            meta: { requiresAuth: true }
+            meta: {requiresAuth: true}
         },
         {
             path: '/listing/:id',
             name: 'ListingDetails',
             component: () => import('../views/ListingDetails.vue'),
-            meta: { requiresAuth: true }
+            meta: {requiresAuth: true}
         },
         {
             path: '/cart',
@@ -50,7 +49,7 @@ const router = createRouter({
             path: '/addHousing',
             name: 'addHousing',
             component: addHousing,
-            meta: { requiresAuth: true }
+            meta: {requiresAuth: true}
         }
     ]
 })
@@ -58,11 +57,8 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const store = useStore()
     if (to.matched.some(record => record.meta.requiresAuth)) {
-
-        const isLoggedIn = localStorage.getItem('isLoggedIn');
-        console.log('isLoggedIn:', isLoggedIn);
-        if (!isLoggedIn) {
-            next({ name: 'login' })
+        if (!store.state.isLoggedIn) {
+            next({name: 'login'})
         } else {
             next()
         }

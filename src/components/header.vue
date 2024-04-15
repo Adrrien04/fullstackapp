@@ -20,12 +20,16 @@ const logout = () => {
             <img src="/src/assets/LogoApp.png" alt="Logo" class="logo">
           </RouterLink>
           <RouterLink class="navbar-brand" to="/">Home</RouterLink>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item" v-if="store.state.isLoggedIn">
+                <RouterLink class="nav-link" to="/shop"> Book now</RouterLink>
+              </li>
               <li class="nav-item">
                 <RouterLink class="nav-link" to="/cart">Cart</RouterLink>
               </li>
@@ -55,7 +59,6 @@ const logout = () => {
 </template>
 
 
-
 <style scoped>
 .search-bar {
   display: flex;
@@ -82,7 +85,8 @@ const logout = () => {
   padding: 8px 16px;
   cursor: pointer;
 }
-.button{
+
+.button {
   background-color: #A4D4A2;
   color: #ffffff;
   border: none;
@@ -90,6 +94,7 @@ const logout = () => {
   padding: 8px 16px;
   cursor: pointer;
 }
+
 .header {
   position: fixed;
   z-index: 1;
@@ -118,11 +123,13 @@ nav .btn:hover {
   color: #ddd;
   text-decoration: none;
 }
+
 .logo {
   height: 70px;
 
   margin-right: 10px;
 }
+
 .logo:hover {
   transform: scale(1.1);
 }
@@ -130,22 +137,24 @@ nav .btn:hover {
 .logo:active {
   transform: scale(0.9);
 }
-.nav-link,.navbar-brand {
+
+.nav-link, .navbar-brand {
 
   margin: 0 10px;
   transition: transform 0.3s ease-in-out;
 
 }
 
-.nav-link:hover,.navbar-brand:hover {
+.nav-link:hover, .navbar-brand:hover {
   text-decoration: none;
   transform: scale(1.1);
 
 }
 
-.nav-link:active,.navbar-brand:active {
+.nav-link:active, .navbar-brand:active {
   transform: scale(0.9);
 }
+
 .button:hover {
   transform: scale(1.1);
 }
